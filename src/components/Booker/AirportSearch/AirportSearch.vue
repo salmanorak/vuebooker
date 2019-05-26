@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper port-search-wrapper" :class="classList" @click="activeInput" v-click-outside="close" onfocusout="close">
+    <div class="wrapper port-search-wrapper" :class="classList" @click="activeInput" @focusin="activeInput" v-click-outside="close" @focusout="close">
         <div class="port-search-item" :class='direction'>
             <div class="icon">
                 <i class="fas" :class="'fa-plane-'+route"></i>
@@ -22,7 +22,6 @@ import AirportSearchResult from '@/components/Booker/AirportSearch/AirportSearch
 import SelectionHolder from '@/components/Booker/AirportSearch/AirportSearchSelectionHolder.vue'
 import PlaceHolder from '@/components/Booker/AirportSearch/AirportSearchInputPlaceHolder.vue'
 import ClickOutside from 'vue-click-outside'
-import FocusOutside from 'vue-focus-outside'
 import { searchHelper } from '@/JS/searchHelper.js'
 
 
@@ -62,10 +61,9 @@ export default {
         close(){
             if(this.selectedPort.portName.length === 0) {
             this.isfocus=false;
-            }else{
-            this.searchString = this.selectedPort.cityName;
             }
             this.isActive=false
+            this.searchString = this.selectedPort.cityName;
         },
         selectPort (port){
             this.selectedPort = port;
@@ -112,9 +110,8 @@ export default {
         PlaceHolder
     },
     directives: {
-        ClickOutside,
-        FocusOutside
-  },
+        ClickOutside,  
+    },
 }
 </script>
 

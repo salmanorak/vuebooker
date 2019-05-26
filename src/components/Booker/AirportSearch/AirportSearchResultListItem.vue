@@ -1,5 +1,5 @@
 <template>
-    <li class='result-item' @click.stop="selectPort(port)"> 
+    <li class='result-item' @mousedown="selectPort(port)"> 
         <i class='fas fa-plane'></i> 
         <span> {{port.portName}} ( {{port.portCode}} ) , {{port.cityName}}</span>
 	</li>
