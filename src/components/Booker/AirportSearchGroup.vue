@@ -1,8 +1,8 @@
 <template>
     <div class="port-search-container container">
-        <airport-search direction="from" :portList="portList" :blackListKeys="blackListKeys" :portMap="portMap" ></airport-search>
-        <airport-search direction="to" :portList="portList" :blackListKeys="blackListKeys" :portMap="portMap"></airport-search>
-        <switcher></switcher>
+        <airport-search direction="from" :portList="portList" :blackListKeys="blackListKeys" :portMap="portMap" ref="airportFrom"></airport-search>
+        <airport-search direction="to" :portList="portList" :blackListKeys="blackListKeys" :portMap="portMap" ref="airportTo"></airport-search>
+        <switcher @switchPort="switchPort"></switcher>
     </div>
 </template>
 
@@ -16,12 +16,19 @@ export default {
             portList:[],
             blackListKeys : ["Havalimanı","Airport","International","Uluslararası"],
             portMap : new Map()
-
         }
     },
     components : {
         AirportSearch,
         Switcher
+    },
+    methods:{
+        switchPort () {
+            let selectedFromPort =  this.$refs['airportFrom'].selectedPort
+            let selectedToPort =  this.$refs['airportTo'].selectedPort
+            this.$refs['airportFrom'].selectedPort = selectedToPort
+            this.$refs['airportTo'].selectedPort = selectedFromPort
+        }
     },
     created(){
         this.$http.get('https://vue-tutorials-orak.firebaseio.com/portList.json')
