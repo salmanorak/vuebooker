@@ -1,18 +1,15 @@
 <template>  
-    <div class="port-search-placeholder" :class='{isfocused}'>{{title}}</div>
+    <div class="port-search-placeholder">{{title | capitalize}}</div>
 </template>
 
 <script>
 export default {
-    computed:{
-        isfocused () {return false}
-    },
     props:{
         title:{
             type: String,
             required:true
-        } 
-    }
+        }
+    },
 }
 </script>
 
@@ -26,13 +23,7 @@ export default {
     left: 5px;
     z-index: 10;
 }
-.is-focused{
-    font-size: 14px;
-    color: blue;
-    top: -15px;
-    left: 5px;
-    transition: all 0.3s;
-}
+
 </style>
 
 
