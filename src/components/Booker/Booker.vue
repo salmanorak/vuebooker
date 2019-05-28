@@ -17,6 +17,16 @@ export default {
 
 
 <style lang="scss">
+body {
+	font-size: 0;
+	background-color:gray;
+	height:3000px;
+	font-family: 'Muli', sans-serif;
+	&.modal-in{
+		position:fixed;
+		width:100%;
+	}
+}
 .booker-section {
 	position: relative;
 	height: 500px;

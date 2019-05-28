@@ -1,1 +1,4 @@
-1- Serverdan veri alırken ilgili alanı render etmeden bekletmek nasıl olacak?
+1- Serverdan veri alırken ilgili alanı render etmeden bekletmek nasıl olacak? --
+2- Child componentin ref değerine erişmek---
+
+3- bir componenti v-for ile dönerken ona click vb event atayamaz mıyız?

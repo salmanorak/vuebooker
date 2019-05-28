@@ -1,5 +1,5 @@
 <template>
-    <li class="all-ports result-item">
+    <li class="all-ports result-item" @mousedown="showModal">
         <i class="fas fa-globe"></i>
         <span>Tüm Uçuş Noktalarını Gör</span>
     </li>
@@ -7,7 +7,11 @@
 
 <script>
 export default {
-    
+    methods:{
+        showModal(){
+            this.$emit("showModal")
+        }
+    }
 }
 </script>
 

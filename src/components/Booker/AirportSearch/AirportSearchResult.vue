@@ -1,7 +1,7 @@
 <template>
     <div class="result-panel">
         <div class="title">Havalimanı</div>
-        <result-list :searchResultList="searchResultList" @portSelected="portSelected($event)"></result-list>
+        <result-list :searchResultList="searchResultList" @portSelected="portSelected($event)" @showModal="showModal"></result-list>
     </div>
 </template>
 
@@ -21,6 +21,9 @@ export default {
     methods:{
         portSelected(port){
             this.$emit('portSelected',port)
+        },
+        showModal(){
+            this.$emit("showModal")
         }
     }
 }

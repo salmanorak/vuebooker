@@ -1,7 +1,7 @@
 <template>
     <div class="port-search-container container">
-        <airport-search direction="from" :portList="portList" :blackListKeys="blackListKeys" :portMap="portMap" ref="airportFrom"></airport-search>
-        <airport-search direction="to" :portList="portList" :blackListKeys="blackListKeys" :portMap="portMap" ref="airportTo"></airport-search>
+        <airport-search direction="from" :portList="portList"  :portMap="portMap" ref="airportFrom" :cityList="cityList"></airport-search>
+        <airport-search direction="to" :portList="portList" :portMap="portMap" ref="airportTo" :cityList="cityList"></airport-search>
         <switcher @switchPort="switchPort"></switcher>
     </div>
 </template>
@@ -9,13 +9,16 @@
 <script>
 import AirportSearch from '@/components/Booker/AirportSearch/AirportSearch.vue'
 import Switcher from '@/components/Booker/Switcher.vue'
+import { diacriticsHelper } from '@/JS/diacritics.js'
+
 
 export default {
     data(){
         return {
             portList:[],
             blackListKeys : ["Havalimanı","Airport","International","Uluslararası"],
-            portMap : new Map()
+            portMap : new Map(),
+            cityList:[],
         }
     },
     components : {
@@ -51,6 +54,18 @@ export default {
             this.portMap[port.portCode] = port
             })
         })
+        .then(()=>{
+            this.portList.forEach((port)=>{
+			    this.cityList.push(port.cityName)
+		    })
+		    this.cityList = this.cityList.filter(function(city,i,arr){return arr.indexOf(city)==i})
+		    this.cityList.sort(function(a, b){  
+                let x = diacriticsHelper().removeDiacritics(a).toLocaleLowerCase("en");
+			    let y = diacriticsHelper().removeDiacritics(b).toLocaleLowerCase("en");
+                return (x!== y) ? (x < y) ? -1 : 1 : 0});
+        }
+
+        )
     },
     
 }

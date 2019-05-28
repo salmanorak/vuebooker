@@ -12,5 +12,6 @@ new Vue({
   router,
   store,
   resource,
+  CustomFilters,
   render: h => h(App)
 }).$mount('#app')

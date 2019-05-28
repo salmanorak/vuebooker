@@ -2,7 +2,7 @@
     <ul class="result-list">
         <list-item v-for="port in searchResultList" :key="port.portCode" :port="port" @portSelected="portSelected($event)">
         </list-item>
-        <default-item v-if="!hasResult"></default-item>
+        <default-item v-if="!hasResult" @showModal="showModal"></default-item>
     </ul>
 </template>
 
@@ -29,6 +29,9 @@ export default {
     methods:{
         portSelected(port){
             this.$emit('portSelected',port)
+        },
+        showModal(){
+            this.$emit("showModal")
         }
     }
 
