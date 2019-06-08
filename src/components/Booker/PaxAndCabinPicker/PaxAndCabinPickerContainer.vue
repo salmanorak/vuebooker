@@ -104,14 +104,14 @@ export default {
         },
         changeCount(data){
             this.selectedPaxTypes[data.paxType].count = data.currentCount
-            if(this.selectedPaxTypes[data.subType]){
+            if(this.selectedPaxTypes[data.subType] && this.selectedPaxTypes[data.subType].count >= data.currentCount ){
                 this.selectedPaxTypes[data.subType].count = data.currentCount 
                 for(let i = 0 ; i <this.paxList.length ; i++){
                     if(this.paxList[i].code==data.subType){
                         this.paxList[i].count= data.currentCount
                         break;
                     }
-                }   
+                }  
             }
         }
     },
