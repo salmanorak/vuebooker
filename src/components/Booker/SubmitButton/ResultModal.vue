@@ -1,6 +1,7 @@
 <template>
 	<base-modal
         :alignItem="'left'"
+        modalTitle="Result"
         @closeModal="closeModal">
         <json-formatter
             :data = this.data
