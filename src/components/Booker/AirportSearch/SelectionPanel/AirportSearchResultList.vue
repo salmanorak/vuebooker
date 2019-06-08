@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import ListItem from '@/components/Booker/AirportSearch/AirportSearchResultListItem.vue'
-import DefaultItem from '@/components/Booker/AirportSearch/AirportSearcResultListAllPortsItem.vue'
+import ListItem from './AirportSearchResultListItem'
+import DefaultItem from './AirportSearcResultListAllPortsItem'
 
 
 export default {

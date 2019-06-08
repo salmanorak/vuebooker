@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import SelectionHolder from '@/components/Booker/AirportSearch/AirportSearchSelectionHolder.vue'
-import PlaceHolder from '@/components/Booker/AirportSearch/AirportSearchInputPlaceHolder.vue'
+import SelectionHolder from './AirportSearchSelectionHolder'
+import PlaceHolder from './AirportSearchInputPlaceHolder'
 
 export default {
     data(){

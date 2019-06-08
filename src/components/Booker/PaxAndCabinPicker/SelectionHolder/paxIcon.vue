@@ -1,13 +1,13 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+    <div class="icon"></div>
 </template>
 
 <script>
+export default {
+    
+}
 </script>
 
-
 <style lang="scss">
-@import 'Home';
+
 </style>

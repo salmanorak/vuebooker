@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import PortListItem from "@/components/Booker/AirportSearch/AllLocationModal/AllLocationPortListItem"
+import PortListItem from "./AllLocationPortListItem"
 
 export default {
     props:{

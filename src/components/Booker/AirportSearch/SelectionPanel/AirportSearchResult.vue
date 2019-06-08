@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ResultList from '@/components/Booker/AirportSearch/AirportSearchResultList.vue'
+import ResultList from './AirportSearchResultList'
 
 
 export default {

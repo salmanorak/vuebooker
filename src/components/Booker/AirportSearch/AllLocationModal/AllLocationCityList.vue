@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import CityListItem from "@/components/Booker/AirportSearch/AllLocationModal/AllLocationCityListItem"
+import CityListItem from "./AllLocationCityListItem"
 
 export default {
     props:{

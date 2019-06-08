@@ -1,5 +1,5 @@
 <template>
-    <li class="all-airport-port-item" @mousedown="selectPort()">
+    <li class="all-airport-port-item" @mousedown.stop="selectPort()">
         {{ port.portName | capitalize }} ( {{port.portCode  }} )
     </li>
 </template>

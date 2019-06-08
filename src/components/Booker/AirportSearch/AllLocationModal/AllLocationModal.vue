@@ -1,17 +1,16 @@
 <template>
-	<general-modal @closeModal="closeModal" @selectCity="filterPorts($event)" @selectPort="selectPort($event)">
-		<city-list :cityList="_cityList" @selectCity="selectCity($event)">
+	<general-modal @closeModal="closeModal">
+		<city-list :cityList="_cityList" @selectCity="filterPorts($event)">
 		</city-list>				
 		<port-list :portList="filteredPortList" @selectPort="selectPort($event)">
 		</port-list>
 	</general-modal>
-
 </template>
 
 <script>
-import CityList from "@/components/Booker/AirportSearch/AllLocationModal/AllLocationCityList"
-import PortList from "@/components/Booker/AirportSearch/AllLocationModal/AllLocationPortList"
-import GeneralModal from "@/components/BaseComponents/GeneralModal.vue"
+import CityList from "./AllLocationCityList"
+import PortList from "./AllLocationPortList"
+import GeneralModal from "../../../BaseComponents/GeneralModal"
 import { searchHelper } from '@/JS/searchHelper.js'
 
 
@@ -52,6 +51,7 @@ export default {
 			},
 			selectPort(port){
 				this.$emit('selectPort',port)
+				this.closeModal()
 			}		
 		},
 		components:{

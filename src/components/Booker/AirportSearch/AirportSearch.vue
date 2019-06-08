@@ -14,19 +14,19 @@
             <airport-search-result :searchResultList="searchResultList" @portSelected="selectPort($event)" @showModal="showModal"></airport-search-result>
         </div>
         <div id="modal" v-if="isShowModal">
-            <component :is="'AllLocationModal'" @closeModal="closeModal" :cityList="_cityList" :portList="_portList" @selectPort="selectPort($event)"></component>
+            <component :is="'AllLocationModal'" @closeModal="closeModal" :cityList="_cityList" :portList="_portList" @selectPort="selectPort($event)" key="animate"></component>
         </div>
     </div>
 </template>
 
 <script>
-import AirportSearchInput from '@/components/Booker/AirportSearch/AirportSearchInput.vue'
-import AirportSearchResult from '@/components/Booker/AirportSearch/AirportSearchResult.vue'
-import SelectionHolder from '@/components/Booker/AirportSearch/AirportSearchSelectionHolder.vue'
-import PlaceHolder from '@/components/Booker/AirportSearch/AirportSearchInputPlaceHolder.vue'
+import AirportSearchInput from './SelectionHolder/AirportSearchInput'
+import AirportSearchResult from './SelectionPanel/AirportSearchResult'
+import SelectionHolder from './SelectionHolder/AirportSearchSelectionHolder'
+import PlaceHolder from './SelectionHolder/AirportSearchInputPlaceHolder'
 import ClickOutside from 'vue-click-outside'
 import { searchHelper } from '@/JS/searchHelper.js'
-import AllLocationModal from '@/components/Booker/AirportSearch/AllLocationModal/AllLocationModal.vue'
+import AllLocationModal from './AllLocationModal/AllLocationModal'
 
 
 
@@ -75,24 +75,25 @@ export default {
             this.searchString = this.selectedPort.cityName;
         },
         selectPort (port){
-            console.log(port);
             this.selectedPort = port;
             this.searchString = this.selectedPort.cityName;
             this.close();
+            this.isfocus=true
         },
         showModal(){
             this.isShowModal=true
         },
         closeModal(){
             this.isShowModal=false
-
         }
     },
     computed:{
         route(){
             return this.direction == "from" ? "departure"  : "arrival"
         },
-        
+        isfocused(){
+            return ( this.isfocus || this.selectedPort.portName.length>0 )
+        },
         isLoaded () {
             if (this.portList.length > 0) {
                 return true;
@@ -101,7 +102,7 @@ export default {
         },
         classList (){
             let classList = [this.direction]
-            if(this.isfocus) {
+            if(this.isfocused) {
                 classList.push('focused')
             }
             if(this.isActive){

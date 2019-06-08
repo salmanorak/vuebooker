@@ -1,12 +1,23 @@
 <template>
-    <div class="modal-container open">
-		 <div class="modal ">
-			<div class="close-button" @click="closeModal">+</div>
-			<div class="modal-title">{{modalTitle}}</div>
-			<div class="modal-body">
+    <div 
+		class="modal-container open">
+		 <div 
+		 	class="modal "
+			 ><div 
+				class="close-button" 
+				@click.stop="closeModal"
+				>+
+			</div>
+			<div 
+				class="modal-title"
+				>{{modalTitle}}
+			</div>
+			<div class="modal-body" :style="{'text-align': _alignItem}">
 				<slot></slot>
 			</div>
-			<div class="modal-buttons"></div>
+			<div 
+				class="modal-buttons"
+			></div>
 		</div>
     </div>
 </template>
@@ -17,18 +28,30 @@ export default {
     props:{
 			modalTitle:{
 				type: String
+			},
+			alignItem:{
+				type:String
 			}
 		},
+	computed:{
+		_alignItem(){
+			if(typeof(this.alignItem)=='undefined'){
+				return 'start'
+			}else{
+				return this.alignItem
+			}
+		}
+	},
 	methods:{
 		closeModal(){
 			this.$emit('closeModal')
 		}
 	},
 	created(){
-       document.getElementsByTagName('body')[0].classList.add('modal-in');
+	 document.querySelector('body').classList.add('modal-in');
 	},
 	destroyed(){
-			document.getElementsByTagName('body')[0].classList.remove('modal-in');
+	   document.querySelector('body').classList.remove('modal-in');
 	}
 }
 </script>
@@ -98,8 +121,7 @@ export default {
 			.modal-body{
 				padding:10px 10px;
 				height: 450px;
-				text-align:center;
-			
+				//text-align:center;
 			}
 		}
 	}

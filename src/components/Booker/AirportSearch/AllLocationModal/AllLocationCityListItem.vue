@@ -1,5 +1,5 @@
 <template>
-    <li class="all-airport-city-item" @mousedown="selectCity()">
+    <li class="all-airport-city-item" @mousedown.stop="selectCity()">
         {{ city | capitalize }}
     </li>
 </template>

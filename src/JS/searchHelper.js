@@ -5,7 +5,7 @@ export const searchHelper = function () {
     let tempResult = []
     let resultSet = []
     let result = []
-    if ((!searchString === '') & (searchString.length > 0)) {
+    if (!(searchString === '') && (searchString.length > 0)) {
       searchString.split(' ').forEach(function (searchStringPart) {
         portList.forEach(function (elm) {
           elm.keyList.forEach(function (key) {
