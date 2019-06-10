@@ -1,20 +1,57 @@
 <template>
-    <div class="wrapper port-search-wrapper" :class="classList" @click="activeInput" @focusin="activeInput" v-click-outside="close" @focusout="close">
-        <div class="port-search-item" :class='direction'>
-            <div class="icon">
-                <i class="fas" :class="'fa-plane-'+route"></i>
+    <div 
+        class="wrapper port-search-wrapper" 
+        :class="classList" 
+        @click="activeInput" 
+        v-click-outside="close" 
+        @focusout="close">
+        <div 
+            class="port-search-item" 
+            :class='direction'>
+            <div 
+                class="icon">
+                <i 
+                    class="fas" 
+                        :class="'fa-plane-'+route"></i>
             </div>
             <airport-search-input>
-                    <div class="input-wrapper">
-                    <input autocomplete="off" type="text" :id="direction" v-model="searchString" class="port-search-input" :class="direction" :ref="'Input'+ direction"/>
-                    <place-holder :title="title"></place-holder>
-                    <selection-holder :port="selectedPort" :direction="direction"></selection-holder>
+                    <div 
+                        class="input-wrapper">
+                    <input
+                        @focusin="activeInput" 
+                        autocomplete="off" 
+                        type="text" 
+                        :id="direction" 
+                        v-model="searchString" 
+                        class="port-search-input" 
+                        :class="direction" 
+                        :ref="'Input'+ direction"/>
+                    <place-holder 
+                        :title="title">
+                    </place-holder>
+                    <selection-holder 
+                        :port="selectedPort" 
+                        :direction="direction">
+                    </selection-holder>
                 </div>
             </airport-search-input>
-            <airport-search-result :searchResultList="searchResultList" @portSelected="selectPort($event)" @showModal="showModal"></airport-search-result>
+            <airport-search-result 
+                :searchResultList="searchResultList" 
+                @portSelected="selectPort($event)" 
+                @showModal="showModal">
+            </airport-search-result>
         </div>
-        <div id="modal" v-if="isShowModal">
-            <component :is="'AllLocationModal'" @closeModal="closeModal" :cityList="_cityList" :portList="_portList" @selectPort="selectPort($event)" key="animate"></component>
+        <div 
+            id="modal" 
+            v-if="isShowModal">
+            <component 
+                :is="'AllLocationModal'" 
+                @closeModal="closeModal" 
+                :cityList="_cityList" 
+                :portList="_portList" 
+                @selectPort="selectPort($event)" 
+                key="animate">
+            </component>
         </div>
     </div>
 </template>
@@ -65,7 +102,7 @@ export default {
                 this.isfocus=true;
                 this.isActive=true
                 this.$refs['Input'+this.direction].focus();
-                this.$refs['Input'+this.direction].select();            
+                this.$refs['Input'+this.direction].select();
         },
         close(){
             if(this.selectedPort.portName.length === 0) {
@@ -77,8 +114,9 @@ export default {
         selectPort (port){
             this.selectedPort = port;
             this.searchString = this.selectedPort.cityName;
+            this.isfocus=true;
             this.close();
-            this.isfocus=true
+            this.isActive=false;
         },
         showModal(){
             this.isShowModal=true
