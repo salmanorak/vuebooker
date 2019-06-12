@@ -1,7 +1,17 @@
 <template>
-    <div class="result-panel">
-        <div class="title">Havalimanı</div>
-        <result-list :searchResultList="searchResultList" @portSelected="portSelected($event)" @showModal="showModal"></result-list>
+    <div 
+        class="result-panel">
+        <div 
+            class="title"
+            >Havalimanı
+        </div>
+        <result-list 
+            :searchResultList="searchResultList" 
+            @portSelected="portSelected($event)" 
+            @showModal="showModal"
+            ref="ResultList"
+            >
+        </result-list>
     </div>
 </template>
 

@@ -1,8 +1,9 @@
 <template>
     <div 
-        class = "datepicker-container" 
+        class = "datepicker-container container" 
         v-click-outside = "closeModal" 
-        @click = "openModal" 
+        @click = "openModal"
+        @focusin= "openModal"
         @focusout = "closeModal"  >
         <datepicker-item 
             :direction= "'departure'"  
@@ -80,7 +81,7 @@ export default {
 	height: 100px;
     vertical-align: middle;
     margin-left: 10px;
-	margin-top: 20px;
+	margin-top: 40px;
 }
 
 </style>

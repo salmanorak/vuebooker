@@ -1,11 +1,15 @@
 <template>
     <div class="calendar">
-        <calendar @newDateSelected="newDateSelected($event)" :isRoundTrip="_isRoundTrip"></calendar>
+        <!-- <calendar @newDateSelected="newDateSelected($event)" :isRoundTrip="_isRoundTrip"></calendar> -->
+        <component :is="SelectedCalender" @newDateSelected="newDateSelected($event)" ></component>
     </div>
 </template>
 
 <script>
 import Calendar from '../../../importedComponents/Calendar'
+import OneWay from '../../../importedComponents/OneWay'
+import RoundTrip from '../../../importedComponents/RoundTrip'
+
 
 export default {
    props:{
@@ -17,6 +21,9 @@ export default {
    computed:{
        _isRoundTrip(){
           return this.isRoundTrip
+       },
+       SelectedCalender(){
+           return this.isRoundTrip ? 'RoundTrip' : 'OneWay'
        }
    },
    methods:{
@@ -25,7 +32,9 @@ export default {
         }
     },
     components:{
-        Calendar
+        Calendar,
+        OneWay,
+        RoundTrip
     }
 }
 </script>

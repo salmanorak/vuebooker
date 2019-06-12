@@ -1,8 +1,10 @@
 <template>
     <div 
-        class="paxpicker-container"
+        class="paxpicker-container container"
         v-click-outside = "closeModal"
         @click = "openModal"
+        @focusin ="openModal"
+        @blur="closeModal"
         >
         <cabin-selection-holder
             :selectedCabinType ="selectedCabinType"
@@ -136,7 +138,7 @@ export default {
     position: relative;
 	display: inline-block;
 	vertical-align: middle;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-left:10px;
     vertical-align:top;
 	color:white;

@@ -2,7 +2,8 @@
     <div 
         class="wrapper port-search-wrapper" 
         :class="classList" 
-        @click="activeInput" 
+        @click="activeInput"
+        @focusin="activeInput" 
         v-click-outside="close" 
         @focusout="close">
         <div 
@@ -18,14 +19,18 @@
                     <div 
                         class="input-wrapper">
                     <input
-                        @focusin="activeInput" 
                         autocomplete="off" 
                         type="text" 
                         :id="direction" 
                         v-model="searchString" 
                         class="port-search-input" 
                         :class="direction" 
-                        :ref="'Input'+ direction"/>
+                        :ref="'Input'+ direction"
+                        @keydown.down="selectNext"
+                        @keydown.up="selectPrevious"
+                        @keydown.enter="selectActiveItem"
+
+                        />
                     <place-holder 
                         :title="title">
                     </place-holder>
@@ -36,9 +41,11 @@
                 </div>
             </airport-search-input>
             <airport-search-result 
-                :searchResultList="searchResultList" 
-                @portSelected="selectPort($event)" 
-                @showModal="showModal">
+                :searchResultList="searchResultList"
+                @portSelected="selectPort($event)"
+                @showModal="showModal"
+                :ref="'resultPanel'"
+                >
             </airport-search-result>
         </div>
         <div 
@@ -123,6 +130,48 @@ export default {
         },
         closeModal(){
             this.isShowModal=false
+        },
+        hasActiveItem(){
+           return document.getElementsByClassName('result-item active').length>0 ? true : false
+        },
+        getActiveItem(){
+            return document.getElementsByClassName('result-item active')[0]
+        },
+        getFirstResultItem(){
+            return document.getElementsByClassName('result-item')[0]
+        }
+        ,
+        selectNext(){
+            if (this.hasActiveItem()){
+               let  activeElement = this.getActiveItem()
+               activeElement.__vue__.isActive=false
+               if (activeElement.nextSibling.nextSibling === null ){
+                    this.getFirstResultItem().__vue__.isActive=true               
+                }else{
+                activeElement.nextSibling.__vue__.isActive=true
+               }                
+            }else{
+               this.getFirstResultItem().__vue__.isActive=true
+            }
+        },
+        selectPrevious(){
+            if (this.hasActiveItem()){
+               let  activeElement = this.getActiveItem()
+               activeElement.__vue__.isActive=false
+               if (activeElement.previousSibling === null ){
+                  this.activeInput();
+               }else{
+                activeElement.previousSibling.__vue__.isActive=true
+               }                
+            }else{
+                let itemList = this.$refs.resultPanel.$refs.ResultList.$refs.ListItem
+                itemList[itemList.length-1].isActive=true
+            }
+        },
+        selectActiveItem(){
+            if(this.hasActiveItem()){
+                this.selectPort(this.getActiveItem().__vue__.port)
+            }
         }
     },
     computed:{
@@ -182,7 +231,7 @@ export default {
 .port-search-wrapper {
 	background-color: white;
 	position: absolute;
-	width: 48%;
+	width: 47%;
 	height: 100%;
 	display: inline-block;
 	&.to {

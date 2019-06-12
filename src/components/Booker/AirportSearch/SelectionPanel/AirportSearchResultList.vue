@@ -1,8 +1,17 @@
 <template>
     <ul class="result-list" >
-        <list-item v-for="port in searchResultList" :key="port.portCode" :port="port" @portSelected="portSelected($event)">
+        <list-item 
+            v-for="port in searchResultList" 
+            :key="port.portCode" 
+            :port="port" 
+            @portSelected="portSelected($event)"
+            ref="ListItem"
+            >
         </list-item>
-        <default-item v-if="!hasResult" @showModal="showModal"></default-item>
+        <default-item 
+            v-if="!hasResult" 
+            @showModal="showModal">
+        </default-item>
     </ul>
 </template>
 
@@ -22,18 +31,18 @@ export default {
             return this.searchResultList && this.searchResultList.length >0 ? true : false
         }
     },
-    components:{
-        ListItem,
-        DefaultItem
-    },
     methods:{
         portSelected(port){
             this.$emit('portSelected',port)
         },
         showModal(){
             this.$emit("showModal")
-        }
-    }
+        },
+    },
+    components:{
+        ListItem,
+        DefaultItem
+    },
 
     
 }

@@ -4,7 +4,8 @@
     :configs="CalendarConfig"
     :value="calendarData"
     ref="Calendar"
-    ></functional-calendar>   
+    xyz="_isRoundTrip"
+    ></functional-calendar>    
 </template>
 
 <script>
@@ -18,8 +19,8 @@ export default {
             CalendarConfig: {
                 sundayStart : false
                 ,dateFormat : "mm/dd/yyyy"
-                ,isDateRange : true
-                ,isDatePicker : false
+                ,isDateRange : false
+                ,isDatePicker : true
                 ,isMultiple : true 
                 ,calendarsCount : 2 
                 ,dayNames:['Pz','Sa','Ça','Pe','Cu','Ct','Pz']
@@ -32,37 +33,13 @@ export default {
             },
         }
     },
-    props:{
-        isRoundTrip : {
-            type: Boolean
-        }
-    },
-    computed:{
-        _isRoundTrip(){
-            // if(this.isRoundTrip){
-            //     console.log(this.$refs.Calendar.$)
-            // }else{
-            //     console.log(this.$refs.Calendar.input.dateRange.start.date
-            //     ,this.$refs.Calendar.$data.input.dateRange.end.date             
-            //     ,this.$refs.Calendar.$data.fConfig.isDatePicker)
-            // }
-            return this.isRoundTrip
-        },
-    },
     methods:{
         changeCalendarData(e){
             this.calendarData = e
-            if (this._isRoundTrip){
-                this.$emit('newDateSelected', {
-                    departureDate :this.calendarData.dateRange.start.date, 
-                    arrivalDate: this.calendarData.dateRange.end.date
-                })
-            
-            }else{
-                this.$emit('newDateSelected', {
-                    departureDate :this.calendarData.selectedDate
-                })
-            }
+            this.calendarData.dateRange.start.date= this.calendarData.selectedDate
+            this.$emit('newDateSelected', {
+                departureDate :this.calendarData.selectedDate
+            })
         }
     },
     components:{

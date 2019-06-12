@@ -48,7 +48,7 @@ export default {
         display: inline-block;
         height: 100px;
         vertical-align: middle;
-        margin-top: 20px;
+        margin-top: 40px;
         margin-left: 10px;
         background-color:#E81932;
         .search-icon{

@@ -1,14 +1,16 @@
 <template>
     <div class="booker-section">
         <div class="booker-container">
-			<!--<route-type v-model="routeType"></route-type>  -->	
+			<route-type v-model="routeType"></route-type>
             <airport-search>
 			</airport-search>
 			<date-picker 
 				:routeType="routeType"
+				tabindex="0"
 				>
 			</date-picker>
 			<pax-and-cabin-picker
+				tabindex="0"
 				>
 			</pax-and-cabin-picker>
 			<submit></submit>
@@ -60,7 +62,7 @@ export default {
 	min-width: 1000px;
 	max-width: 1200px;
 	background-color: rgba(35, 43, 55, 0.6);
-	height: 140px;
+	height: 170px;
 	text-align: center;
 	padding: 0 10px;
 	cursor:pointer;

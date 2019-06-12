@@ -27,11 +27,13 @@ export default {
 
 <style lang="scss" scoped>
 .route-type{
-position:absolute;
-left: 0;
-color:white
+    position:absolute;
+    top:10px;
+    left: 0px;
+    color:white
 }
 div {
-    display: inline-block
+    display: inline-block;
+    margin-left: 10px;
 }
 </style>

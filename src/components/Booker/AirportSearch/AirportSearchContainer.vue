@@ -8,7 +8,6 @@
             :portMap="portMap" 
             ref="airportFrom" 
             :cityList="cityList"
-            tabindex="1"
             >
         </airport-search>
         <airport-search 
@@ -17,7 +16,6 @@
             :portMap="portMap" 
             ref="airportTo" 
             :cityList="cityList"
-            tabindex="2"
             >
         </airport-search>
         <switcher 
@@ -125,20 +123,19 @@ export default {
 <style lang="scss" scoped>
     .port-search-container {
         position: relative;
-        width: calc(60% - 30px);
+        width: calc(60% - 50px);
         text-align: left;
         background-color: transparent;
 	    display: inline-block;
 	    height: 100px;
 	    vertical-align: middle;
-	    margin-top: 20px;
     }
     .container {
 	position: relative;
 	display: inline-block;
 	height: 100px;
 	vertical-align: middle;
-	margin-top: 20px;
+	margin-top: 40px;
 	&:not(:first-child) {
 		margin-left: 10px;
     }
