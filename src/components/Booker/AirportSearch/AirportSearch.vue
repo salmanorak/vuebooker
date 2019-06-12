@@ -45,6 +45,7 @@
                 @portSelected="selectPort($event)"
                 @showModal="showModal"
                 :ref="'resultPanel'"
+                v-if="isActive"
                 >
             </airport-search-result>
         </div>
