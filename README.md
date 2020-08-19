@@ -1,29 +1,7 @@
 # vuebooker
 
-## Project setup
-```
-npm install
-```
+Vuebooker is a booker that can ve used on travel planning websites.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This is a prototype. It can be customized according go project needs before using.
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+It is consisted of more than 60 sub component.
